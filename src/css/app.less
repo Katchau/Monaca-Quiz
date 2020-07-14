@@ -47,9 +47,9 @@
   --b: 255;
   --progress: var(--f7-navbar-large-collapse-progress);
   --f7-bars-link-color: rgb(
-    calc(var(--r) + (255 - var(--r)) * var(--progress)),
-    calc(var(--g) + (255 - var(--g)) * var(--progress)),
-    calc(var(--b) + (255 - var(--b)) * var(--progress))
+          calc(var(--r) + (255 - var(--r)) * var(--progress)),
+          calc(var(--g) + (255 - var(--g)) * var(--progress)),
+          calc(var(--b) + (255 - var(--b)) * var(--progress))
   );
 }
 .theme-dark .navbar-large-transparent,
@@ -60,8 +60,18 @@
 /* Your app custom styles here */
 
 /* Your app styles here */
+.page-current {
+  position: relative;
+}
+
+
 #main-view .page-content {
-  padding: 25% 2% 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  width: 100%;
+  height: auto;
 }
 
 #main-view .page {
