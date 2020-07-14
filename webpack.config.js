@@ -112,6 +112,15 @@ let webpackConfig = {
         ],
       },
       {
+        test: /\.(sa|sc)ss$/,
+        use: [
+          devMode ? 'style-loader' :  MiniCssExtractPlugin.loader,
+          'css-loader',
+          'postcss-loader',
+          'sass-loader',
+        ],
+      },
+      {
         test: /\.json$/,
         loader: 'json'
       }

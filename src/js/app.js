@@ -13,6 +13,7 @@ import 'framework7/css/framework7.bundle.css';
 // Import Icons and App Custom Styles
 import '@/css/icons.css';
 import '@/css/app.less';
+import '@/css/app.sass';
 
 // Import firebase configuration. This can be used to make the application wait for it to initialize.
 const fb = require('@/js/firebaseConfig.js');
