@@ -7,9 +7,8 @@
         <f7-block strong id="landing-body">
             <f7-list>
                 <f7-button fill raised login-screen-open="#register-screen">Register Screen</f7-button>
-            </f7-list>
-            <f7-list>
                 <f7-button fill raised login-screen-open="#login-screen">Login Screen</f7-button>
+                <f7-button fill raised href="/game/table">Game Menu test</f7-button>
             </f7-list>
         </f7-block>
     </f7-page>

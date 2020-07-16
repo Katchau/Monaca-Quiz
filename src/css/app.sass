@@ -13,11 +13,6 @@
     background-color: #fff
 
 
-  .page-content
-    padding: 64px 2% 0
-    overflow-y: hidden
-
-
 .block-header.landing-header
   /*margin-top: 35%*/
   text-align: center
@@ -69,3 +64,31 @@
 .hidden
   display: none
 
+
+
+.score-table
+  list-style: none
+  display: flex
+  flex-direction: column-reverse
+
+  .table-elem
+    display: inline-grid
+    grid-template-columns: 30px 30px 69px
+
+    p:first-child
+      text-align: right
+
+    .circle
+      height: 5px
+      width: 5px
+      border-radius: 50%
+      margin: auto
+
+      &.passed
+        background-color: gray
+
+    p
+      margin: 0
+
+    &.selected
+      color: blue
