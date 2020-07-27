@@ -5,8 +5,8 @@
 #main-view
 
   .page-content
-    width: 100%
     height: auto
+    width: 100%
     margin: auto
     padding: 0
 
@@ -74,10 +74,10 @@
     background: none
     color: white
     width: auto
+    padding: 3.5%
 
-    & img
-      width: 10%
-      height: auto
+    &.cell
+      padding: 3.5% 5.5%
 
   #question-body
     text-align: center
@@ -115,6 +115,10 @@
   list-style: none
   display: flex
   flex-direction: column-reverse
+  padding: 0
+
+  li
+    margin: 2%
 
   .table-elem
     display: inline-grid
@@ -133,6 +137,7 @@
         background-color: gray
 
     p
+      font-size: medium
       margin: 0
 
     &.selected
