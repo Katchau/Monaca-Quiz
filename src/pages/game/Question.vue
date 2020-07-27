@@ -1,6 +1,22 @@
 <template>
-    <f7-page>
-        <f7-card id="question-page">
+    <f7-page id="question-page">
+        <f7-navbar>
+            <f7-nav-left>
+                Give Up
+            </f7-nav-left>
+            <f7-nav-right>
+                <button class="help-button">
+                    50/50
+                </button>
+                <button class="help-button">
+                    <img alt="group-help" src="/src/assets/help2.png"/>
+                </button>
+                <button class="help-button">
+                    <img alt="cell-help" src="/src/assets/help3.png"/>
+                </button>
+            </f7-nav-right>
+        </f7-navbar>
+        <f7-card id="question-body">
             <f7-card-header>
                 <h1 class="question-box">
                     {{question}}
