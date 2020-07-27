@@ -1,19 +1,17 @@
 <template>
     <f7-page id="question-page">
         <f7-navbar>
-            <f7-nav-left>
-                Give Up
+            <f7-nav-left >
+                <f7-button @click="retBack()">
+                    Give Up
+                </f7-button>
             </f7-nav-left>
             <f7-nav-right>
                 <button class="help-button">
                     50/50
                 </button>
-                <button class="help-button">
-                    <img alt="group-help" src="/src/assets/help2.png"/>
-                </button>
-                <button class="help-button">
-                    <img alt="cell-help" src="/src/assets/help3.png"/>
-                </button>
+                <img alt="group-help" src="/src/assets/help2.png"/>
+                <img class="help-button" alt="cell-help" src="/src/assets/help3.png"/>
             </f7-nav-right>
         </f7-navbar>
         <f7-card id="question-body">
@@ -39,7 +37,13 @@
     export default {
         name: "Question",
 
-        props: ['question', 'answers']
+        props: ['question', 'answers'],
+
+        methods: {
+            retBack() {
+                this.$f7router.back()
+            }
+        }
     }
 </script>
 
