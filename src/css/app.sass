@@ -1,13 +1,14 @@
 /* Your app custom styles here */
-.page-current
-  display: flex
 
 #main-view
 
   .page-content
     height: auto
     width: 100%
-    margin: auto
+    position: absolute
+    top: 50%
+    transform: translateY(-50%)
+    -ms-transform: translateY(-50%)
     padding: 0
 
   .page
@@ -66,6 +67,8 @@
   display: none
 
 #question-page
+  position: relative
+
   .help-button
     margin: 5px
     border-radius: 50%
