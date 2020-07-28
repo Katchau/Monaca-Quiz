@@ -1,5 +1,24 @@
 <template>
     <f7-page id="question-page">
+
+        <f7-popup id="help-page" ref="helpPopUp">
+            <div v-if="!hasVerified">
+                <h3>
+                    Do you really want to select {{helpType}} ?
+                </h3>
+                <f7-button @click="hasVerified = true">
+                    Yes
+                </f7-button>
+                <f7-button @click="closePopUp()">
+                    No
+                </f7-button>
+            </div>
+            <div v-else>
+                Player has chosen to use the {{helpType}} help !
+                <Help id="help-view" :answers="answers" :help-type="helpType" help-page />
+            </div>
+        </f7-popup>
+
         <f7-navbar>
             <f7-nav-left>
                 <f7-button @click="retBack()">
@@ -7,18 +26,18 @@
                 </f7-button>
             </f7-nav-left>
             <f7-nav-right>
-                <f7-button class="help-button width-auto" type="button" outline round large>
+                <f7-button class="help-button width-auto" type="button" @click="openPopUp('50/50')" outline round large>
                     50/50
                 </f7-button>
-                <f7-button popup-open="help-page width-auto" class="help-button" outline round large icon>
+                <f7-button class="help-button width-auto" @click="openPopUp('Audience')" outline round large icon>
                     <img alt="group-help" src="/src/assets/help2.png" width="30px"/>
                 </f7-button>
-                <f7-button class="help-button width-auto" outline round large icon pt5>
+                <f7-button class="help-button width-auto" @click="openPopUp('Call')" outline round large icon pt5>
                     <img alt="cell-help" src="/src/assets/help3.png" width="20px"/>
                 </f7-button>
             </f7-nav-right>
         </f7-navbar>
-        <f7-view id="help-page-view" url="/game/help/" help-page hidden />
+
         <f7-card id="question-body">
             <f7-card-header>
                 <h1 class="question-box">
@@ -39,14 +58,36 @@
 </template>
 
 <script>
+    import Help from '@/pages/game/Help'
+
     export default {
         name: "Question",
 
         props: ['question', 'answers'],
 
+        components: {
+          Help
+        },
+
+        data () {
+            return {
+                hasVerified: false,
+                helpType: '',
+                helpLink: ''
+            }
+        },
+
         methods: {
             retBack() {
                 this.$f7router.back()
+            },
+            openPopUp(help) {
+                this.helpType = help;
+                this.$refs.helpPopUp.open()
+            },
+            closePopUp() {
+                this.hasVerified = false;
+                this.$refs.helpPopUp.close()
             }
         }
     }
