@@ -1,3 +1,21 @@
+/* Definitions and repeatable patterns here */
+$my-purple: #6202F5
+$my-orange: #FFA500
+
+@mixin center-area($x, $y)
+  top: $y
+  left: $x
+  transform: translate(-$x, -$y)
+  -ms-transform: translate(-$x, -$y)
+
+@mixin center-area-v
+  @include center-area(0, 50%)
+
+@mixin center-area-vh
+  @include center-area(50%, 50%)
+
+
+
 /* Your app custom styles here */
 
 #main-view
@@ -6,10 +24,8 @@
     height: auto
     width: 100%
     position: absolute
-    top: 50%
-    transform: translateY(-50%)
-    -ms-transform: translateY(-50%)
     padding: 0
+    @include center-area-v
 
   .page
     background-color: #fff
@@ -65,6 +81,19 @@
 
 .hidden
   display: none
+
+#help-page
+  @include center-area-vh
+  min-width: 80%
+  text-align: center
+
+  #help-card
+    padding: 5px
+
+    .graph-answer
+      display: inline-flex
+      color: $my-purple
+      background-color: $my-orange
 
 #question-page
   position: relative
@@ -143,7 +172,7 @@
       margin: 0
 
     &.selected
-      color: #6202F5
+      color: $my-purple
       background-repeat: no-repeat
       background-size: 100% 100%
       background-image: url("../assets/hex2.png")

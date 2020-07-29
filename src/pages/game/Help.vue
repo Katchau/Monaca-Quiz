@@ -10,10 +10,14 @@
             {{ getRandomAnswer }}
         </div>
         <div v-else>
-            Graph
-            <p v-for="(answer, i) in getCrowdAnswer" :key="i">
-                {{ answer.text }}: {{ answer.val }}
-            </p>
+            <div v-for="(answer, i) in getCrowdAnswer" :key="i" style="text-align: left">
+                <span>
+                    {{ i+1 }}:
+                </span>
+                <div class="graph-answer" :style="`width: ${answer.val}%`">
+                    {{ answer.val }}
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -26,17 +30,18 @@
 
         computed: {
             getTwoRandomAnswers() {
+                //TODO maybe add a random? I am not since i am considering the answers to be shuffled already
+                //but for the same structure the selection will always be within the same 2 options
                 let tmp = this.answers;
                 let sortFnc = function (a, b) {
-                    if (a.correct) return -1;
-                    if (b.correct) return 1;
+                    if (a.correct) return 1;
+                    if (b.correct) return -1;
 
                     return 0
                 };
-                let correct = tmp.sort(sortFnc).shift();
-                let random1 = tmp[Math.floor(Math.random() * 3)];
-                let random2 = Math.floor(Math.random() * 2);
-                return random2 ? [correct, random1] : [random1, correct]
+                tmp.sort(sortFnc).shift();
+                tmp.shift();
+                return Math.floor(Math.random() * 2) ? tmp : tmp.reverse()
             },
 
             getRandomAnswer() {

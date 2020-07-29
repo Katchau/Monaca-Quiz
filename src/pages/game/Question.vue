@@ -1,7 +1,7 @@
 <template>
     <f7-page id="question-page">
 
-        <f7-popup id="help-page" ref="helpPopUp">
+        <f7-popover id="help-page" ref="helpPopUp">
             <div v-if="!hasVerified">
                 <h3>
                     Do you really want to select {{helpType}} ?
@@ -13,11 +13,11 @@
                     No
                 </f7-button>
             </div>
-            <div v-else>
+            <div v-else id="help-card">
                 Player has chosen to use the {{helpType}} help !
                 <Help id="help-view" :answers="answers" :help-type="helpType" help-page />
             </div>
-        </f7-popup>
+        </f7-popover>
 
         <f7-navbar>
             <f7-nav-left>
@@ -82,6 +82,11 @@
                 this.$f7router.back()
             },
             openPopUp(help) {
+                if(this.hasVerified) {
+                    if(this.helpType !== help)
+                        return false
+                }
+
                 this.helpType = help;
                 this.$refs.helpPopUp.open()
             },
