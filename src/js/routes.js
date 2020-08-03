@@ -5,6 +5,7 @@ import MoneyTree from "@/pages/game/MoneyTree";
 import MoneyComponent from "@/pages/game/MoneyComponent";
 import Question from "@/pages/game/Question";
 import Help from "@/pages/game/Help";
+import GameManager from "@/pages/GameManager";
 
 export default [
   {
@@ -18,6 +19,10 @@ export default [
   {
     path: '/register/',
     component: Register
+  },
+  {
+    path: '/game',
+    component: GameManager
   },
   {
     path: '/game/question',

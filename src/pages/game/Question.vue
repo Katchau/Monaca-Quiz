@@ -72,8 +72,7 @@
         data () {
             return {
                 hasVerified: false,
-                helpType: '',
-                helpLink: ''
+                helpType: ''
             }
         },
 
