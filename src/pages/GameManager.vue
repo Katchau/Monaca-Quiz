@@ -61,6 +61,10 @@
                     }
                 ],
                 gameState: 'create', //create check play loose win next stop
+                questionState: {
+                    helpUsed: [],
+                    state: []
+                },
                 currentLevelState: 1,
                 //this is just an example, the goal is to push as you go along
                 questions: [{
@@ -125,7 +129,8 @@
                     this.$f7.views.main.router.navigate('/game/question', {
                         props: {
                             question: question.question,
-                            answers: question.answers
+                            answers: question.answers,
+                            questionState: this.questionState
                         }
                     });
                 } else if (this.gameState === 'play') {
@@ -140,10 +145,12 @@
                     });
                     this.transitionAsyncTimer()
                 }
-            },
+            }
+        },
 
-            displayCurrentLevel() {
-                this.$$('#game').append(`<f7-view id="table-score-view" url="/game/table" score-table />`);
+        watch: {
+            "questionState.state": function (val) {
+                console.log(val)
             }
         }
     }

@@ -29,6 +29,7 @@ export default [
     component: Question,
     options: {
       props: {
+        questionState: {},
         question: 'Question?',
         answers: [
           {

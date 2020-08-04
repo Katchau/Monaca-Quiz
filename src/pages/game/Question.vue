@@ -47,7 +47,7 @@
             <f7-card-content>
                 <ul class="answers">
                     <li class="answer" v-for="(answer, i) in answers" :key="'answer' + i">
-                        <button class="question-box" >
+                        <button class="question-box" @click="checkAnswer(answer)">
                             {{answer.text}}
                         </button>
                     </li>
@@ -63,7 +63,7 @@
     export default {
         name: "Question",
 
-        props: ['question', 'answers'],
+        props: ['question', 'answers', 'questionState'],
 
         components: {
           Help
@@ -92,6 +92,17 @@
             closePopUp() {
                 this.hasVerified = false;
                 this.$refs.helpPopUp.close()
+            },
+            checkAnswer(answer) {
+                let state = 'next';
+                if(!answer.correct) state = 'loose';
+
+                if (this.helpType && this.hasVerified)
+                    this.questionState.helpUsed.push(this.helpType);
+
+                this.questionState.state.push(state);
+
+                this.$f7router.back()
             }
         }
     }
