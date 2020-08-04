@@ -31,8 +31,8 @@
                 <f7-list-button @click="startGame()" title="Start Game" />
             </f7-list>
         </div>
-        <div v-else id="game">
-            ter aqui uma bolinha a girar
+        <div v-else id="game" style="text-align: center">
+            <img src="/src/assets/coin1.gif" alt="loading pic"/>
         </div>
     </f7-page>
 </template>
