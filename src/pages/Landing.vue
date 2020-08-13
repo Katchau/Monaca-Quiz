@@ -1,8 +1,7 @@
 <template>
     <f7-page>
         <f7-block-header class="landing-header">
-            <h1>Firebase TODO Application</h1>
-            <h3>A Monaca template using Framework7 with VueJS</h3>
+            <img class="esbetaculo-logo" alt="app-logo" src="src/assets/logo1.png"/>
         </f7-block-header>
         <f7-block strong id="landing-body">
             <f7-list>
