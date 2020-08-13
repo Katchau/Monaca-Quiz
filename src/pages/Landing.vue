@@ -1,14 +1,15 @@
 <template>
     <f7-page>
         <f7-block-header class="landing-header">
-            <img class="esbetaculo-logo" alt="app-logo" src="src/assets/logo1.png"/>
+            <img class="esbetaculo-logo" alt="app-logo" src="src/assets/logo1.png" @canplay="playIntro()"/>
         </f7-block-header>
         <f7-block strong id="landing-body">
             <f7-list>
-                <f7-button fill raised login-screen-open="#register-screen">Register Screen</f7-button>
-                <f7-button fill raised login-screen-open="#login-screen">Login Screen</f7-button>
-                <f7-button fill raised href="/game/">Game Test</f7-button>
-                <f7-button fill raised href="/game/question">Question test</f7-button>
+                <f7-button class="weird-btn" outline color="red" round raised login-screen-open="#register-screen">Register Screen</f7-button>
+                <f7-button class="weird-btn" outline color="red" round raised login-screen-open="#login-screen">Login Screen</f7-button>
+                <f7-button class="weird-btn" outline color="red" round raised href="/game/">Game Test</f7-button>
+                <f7-button class="weird-btn" outline color="red" round raised href="/game/question">Question test</f7-button>
+                <button id="secret" style="display: none" @click="playIntro()" />
             </f7-list>
         </f7-block>
     </f7-page>
@@ -20,6 +21,7 @@
     export default {
         mounted () {
             let self = this;
+            this.$$('#secret').click();
             fb.auth.onAuthStateChanged(user => {
                 if (user && user.displayName) {
                     // we are redirecting here when opening the app in case the user is still logged in
@@ -28,6 +30,17 @@
                     // self.$f7router.navigate('/main/')
                 }
             })
+        },
+
+        methods: {
+            playIntro() {
+                let landingAudioGeneric = new Audio(require('../assets/starting.wav'));
+                landingAudioGeneric.play().then(() => {
+                    //something?
+                }).catch((error) => {
+                    console.log(error);
+                });
+            }
         }
     }
 </script>

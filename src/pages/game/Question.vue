@@ -40,14 +40,14 @@
 
         <f7-card id="question-body">
             <f7-card-header>
-                <h1 class="question-box">
+                <h1 class="game-box question-box">
                     {{question}}
                 </h1>
             </f7-card-header>
             <f7-card-content>
                 <ul class="answers">
                     <li class="answer" v-for="(answer, i) in answers" :key="'answer' + i">
-                        <button class="question-box" @click="checkAnswer(answer)">
+                        <button class="game-box" @click="checkAnswer(answer)">
                             {{answer.text}}
                         </button>
                     </li>

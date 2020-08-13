@@ -53,32 +53,30 @@ $my-orange: #FFA500
 
 
 #landing-body
+  background: none
 
   &:after
     content: none
 
+  &:before
+    content: none
+
+.weird-btn
+  margin: 10px
+  background-color: lightyellow
 
 .add-button
   width: 200px
 
 
-#creation-page
-  .add-button
-    padding-left: 16px
-    text-align: left
-
-
-  .preview-img
-    margin-left: 16px
-    margin-top: 16px
-    max-width: 90%
-    max-height: 250px
+#game-create
+  ul
+    margin: 10%
     border-style: double
-    border-color: #007aff
+    border-color: darksalmon
 
-  textarea
-    height: auto
-
+  select, a
+    color: darksalmon
 
 .red-text
   color: orangered
@@ -117,20 +115,34 @@ $my-orange: #FFA500
       top: 15%
 
   #question-body
+    background-color: transparent
+    box-shadow: none
     text-align: center
 
-    .question-box
+    .card-header
+      margin-bottom: 5%
+
+    .game-box
       border-radius: 25%
       border-style: solid
-      border-color: black
+      border-color: darksalmon
       text-align: center
       margin: auto
-      width: 80%
+      width: 90%
       height: 10vh
+      background-color: lightyellow
+      color: navy
 
-
-      &.h1
+      &.question-box
+        font-size: 1.4em
+        padding: 10% 0
+        height: auto
+        max-height: 25vh
         font-weight: bold
+
+    .card-header
+      &:after
+        content: none
 
     .answers
       display: grid

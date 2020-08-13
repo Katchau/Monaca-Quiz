@@ -85,7 +85,7 @@ let webpackConfig = {
         ]
       },
       {
-        test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)(\?\S*)?$/,
+        test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico|wav)(\?\S*)?$/,
         loader: 'file-loader?name=assets/[name].[hash].[ext]'
       },
       {

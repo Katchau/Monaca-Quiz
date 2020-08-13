@@ -1,6 +1,6 @@
 <template>
     <f7-page>
-        <div v-if="state === 'loose'">
+        <div v-if="state === 'loose'" style="text-align: center">
             <h1>
                 Shame, you Lost ...
             </h1>
@@ -8,7 +8,7 @@
                 Ter uma imagem aqui?
             </p>
         </div>
-        <div v-else-if="state === 'win'">
+        <div v-else-if="state === 'win'" style="text-align: center">
             <h1>
                 Congratulations, you won the grand prize of 1 Million Dollars!
             </h1>
@@ -16,7 +16,7 @@
                 Image and animation missing
             </p>
         </div>
-        <div v-else>
+        <div v-else style="text-align: center">
             <h1>
                 Congrats, you won {{ money[moneyIndex] }} Dollars! Try again for better results!
             </h1>
