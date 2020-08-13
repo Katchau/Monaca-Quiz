@@ -6,6 +6,7 @@ import MoneyComponent from "@/pages/game/MoneyComponent";
 import Question from "@/pages/game/Question";
 import Help from "@/pages/game/Help";
 import GameManager from "@/pages/GameManager";
+import End from "@/pages/game/End";
 
 export default [
   {
@@ -56,6 +57,16 @@ export default [
     options: {
       props: {
         currentState: 1
+      }
+    }
+  },
+  {
+    path: '/game/end',
+    component: End,
+    options: {
+      props: {
+        state: 'loose',
+        moneyIndex: 0
       }
     }
   },

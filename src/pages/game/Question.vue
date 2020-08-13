@@ -78,9 +78,13 @@
 
         methods: {
             retBack() {
+                this.questionState.state.push('stop');
                 this.$f7router.back()
             },
             openPopUp(help) {
+                if(this.questionState.helpUsed.includes(help))
+                    return false;
+
                 if(this.hasVerified) {
                     if(this.helpType !== help)
                         return false
@@ -94,7 +98,7 @@
                 this.$refs.helpPopUp.close()
             },
             checkAnswer(answer) {
-                let state = 'next';
+                let state = 'play';
                 if(!answer.correct) state = 'loose';
 
                 if (this.helpType && this.hasVerified)

@@ -114,11 +114,15 @@
                 let self = this;
                 let timeOutFunc = function () {
                     self.$f7router.back();
-                    setTimeout(()=> {self.transitionState()},2000);
+                    self.sleepForBit()
                     //self.transitionState();
                 };
 
                 setTimeout(timeOutFunc, 2000)
+            },
+
+            sleepForBit() {
+                setTimeout(() => {this.transitionState()},1000 );
             },
 
             transitionState() {
@@ -126,7 +130,7 @@
                 if (this.gameState === 'check') {
                     this.gameState = 'play';
                     let question = this.getQuestion();
-                    this.$f7.views.main.router.navigate('/game/question', {
+                    this.$f7router.navigate('/game/question', {
                         props: {
                             question: question.question,
                             answers: question.answers,
@@ -134,7 +138,31 @@
                         }
                     });
                 } else if (this.gameState === 'play') {
-                    //TODO check on how to get if the answer was correct or not
+                    this.gameState = 'check';
+                    this.currentLevelState++;
+                    if (this.currentLevelState > 15) {
+                        this.gameState = 'win';
+                        this.transitionState();
+                        return
+                    }
+                    //TODO prolly get a question here or somewhere
+                    this.$f7router.navigate('/game/table', {
+                        props: {
+                            currentState: this.currentLevelState
+                        }
+                    });
+                    this.transitionAsyncTimer()
+                } else if (this.gameState === 'loose' || this.gameState === 'stop' || this.gameState === 'win') {
+                    this.$f7router.navigate('/game/end', {
+                        props: {
+                            state: this.gameState,
+                            moneyIndex: this.currentLevelState - 1
+                        }
+                    });
+                    this.gameState = 'end';
+                } else if(this.gameState === 'end') {
+                    //TODO something like save the record?
+                    this.$f7router.back();
                 } else {
                     //TODO por enquanto esta so o next
                     this.gameState = 'check';
@@ -150,7 +178,10 @@
 
         watch: {
             "questionState.state": function (val) {
-                console.log(val)
+                if (val.length === 0) return;
+                this.gameState = val[0];
+                this.questionState.state = [];
+                this.sleepForBit()
             }
         }
     }
