@@ -1,5 +1,5 @@
 <template>
-    <f7-page>
+    <f7-page id="end-page">
         <div v-if="state === 'loose'" style="text-align: center">
             <h1>
                 Shame, you Lost ...
