@@ -41,6 +41,7 @@
     import MoneyTree from "@/pages/game/MoneyTree";
     import Question from "@/pages/game/Question";
     import End from "@/pages/game/End";
+    const quizApi = require('@/js/quizApiService');
 
     export default {
         name: "GameManager",
@@ -83,26 +84,33 @@
             //TODO unfinished. Here is where you request
             getQuestion() {
                 let difficulty = this.currentLevelState;
+                let self = this;
 
-                return {
-                    question: 'Question?',
-                    answers: [
-                        {
-                            text: 'Answer 1',
-                            correct: true
-                        },
-                        {
-                            text: 'Answer 2',
+                let successMethod = function (data) {
+                    console.log('success!');
+                    let result = data.results[0];
+                    let answers = [];
+                    result.incorrect_answers.forEach(x => {
+                        answers.push({
+                            text: x,
                             correct: false
-                        },            {
-                            text: 'Answer 3',
-                            correct: false
-                        },            {
-                            text: 'Answer 4',
-                            correct: false
+                        })
+                    });
+                    answers.push({
+                        text: result.correct_answer,
+                        correct: true
+                    });
+
+                    self.$f7router.navigate('/game/question', {
+                        props: {
+                            question: result.question,
+                            answers: answers,
+                            questionState: self.questionState
                         }
-                    ]
-                }
+                    });
+                };
+
+                quizApi.quizQuestionRequest(successMethod, 12, 'hard');
             },
 
             startGame(){
@@ -129,14 +137,7 @@
                 console.log(`current state: ${this.gameState}`)
                 if (this.gameState === 'check') {
                     this.gameState = 'play';
-                    let question = this.getQuestion();
-                    this.$f7router.navigate('/game/question', {
-                        props: {
-                            question: question.question,
-                            answers: question.answers,
-                            questionState: this.questionState
-                        }
-                    });
+                    this.getQuestion();
                 } else if (this.gameState === 'play') {
                     this.gameState = 'check';
                     this.currentLevelState++;
