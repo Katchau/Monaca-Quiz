@@ -72,7 +72,8 @@
         data () {
             return {
                 hasVerified: false,
-                helpType: ''
+                helpType: '',
+                hasClicked: false
             }
         },
 
@@ -109,6 +110,8 @@
                 this.$f7router.back()
             },
             checkingAnimation(answer, btn){
+                if (this.hasClicked) return;
+                this.hasClicked = true;
                 let self = this;
                 btn.srcElement.className += answer.correct ? ' win' : ' loose' ;
 
