@@ -1,7 +1,7 @@
 <template>
     <f7-page>
         <f7-block-header class="landing-header">
-            <img class="esbetaculo-logo" alt="app-logo" src="src/assets/logo1.png" @canplay="playIntro()"/>
+            <img class="esbetaculo-logo" alt="app-logo" src="src/assets/logo1.png"/>
         </f7-block-header>
         <f7-block strong id="landing-body">
             <f7-list>
@@ -21,7 +21,7 @@
     export default {
         mounted () {
             let self = this;
-            this.$$('#secret').click();
+
             fb.auth.onAuthStateChanged(user => {
                 if (user && user.displayName) {
                     // we are redirecting here when opening the app in case the user is still logged in

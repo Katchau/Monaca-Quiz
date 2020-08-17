@@ -92,18 +92,18 @@
                     let answers = [];
                     result.incorrect_answers.forEach(x => {
                         answers.push({
-                            text: x,
+                            text: unescape(x),
                             correct: false
                         })
                     });
                     answers.push({
-                        text: result.correct_answer,
+                        text: unescape(result.correct_answer),
                         correct: true
                     });
 
                     self.$f7router.navigate('/game/question', {
                         props: {
-                            question: result.question,
+                            question: unescape(result.question),
                             answers: answers,
                             questionState: self.questionState
                         }
