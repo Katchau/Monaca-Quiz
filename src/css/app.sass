@@ -1,6 +1,12 @@
 /* Definitions and repeatable patterns here */
 $my-purple: #6202F5
+$my-red: orangered
 $my-orange: #FFA500
+$my-yellow: lightyellow
+$my-salmon: darksalmon
+$my-pseudoblue: navy
+$my-green: lightseagreen
+
 
 @mixin center-area($x, $y)
   top: $y
@@ -14,7 +20,25 @@ $my-orange: #FFA500
 @mixin center-area-vh
   @include center-area(50%, 50%)
 
+@mixin buttonAnimation($name, $color)
+  background-color: $color
+  @keyframes #{$name}
+    0%
+      background-color: $my-orange
+    25%
+      background-color: $my-purple
+    50%
+      background-color: $my-orange
+    75%
+      background-color: $my-purple
+    100%
+      background-color: $color
 
+@mixin winAnimation
+  @include buttonAnimation(selectingAnimation1, $my-green)
+
+@mixin looseAnimation
+  @include buttonAnimation(selectingAnimation2, $my-red)
 
 /* Your app custom styles here */
 
@@ -63,7 +87,7 @@ $my-orange: #FFA500
 
 .weird-btn
   margin: 4%
-  background-color: lightyellow
+  background-color: $my-yellow
 
 .add-button
   width: 200px
@@ -73,10 +97,10 @@ $my-orange: #FFA500
   ul
     margin: 10%
     border-style: double
-    border-color: darksalmon
+    border-color: $my-salmon
 
   select, a
-    color: darksalmon
+    color: $my-salmon
 
 .red-text
   color: orangered
@@ -125,13 +149,13 @@ $my-orange: #FFA500
     .game-box
       border-radius: 25%
       border-style: solid
-      border-color: darksalmon
+      border-color: $my-salmon
       text-align: center
       margin: auto
       width: 90%
       height: 10vh
-      background-color: lightyellow
-      color: navy
+      background-color: $my-yellow
+      color: $my-pseudoblue
 
       &.question-box
         font-size: 1.4em
@@ -157,6 +181,20 @@ $my-orange: #FFA500
         width: 80%
         margin: 5px auto
         list-style: none
+
+        .game-box.win
+          @include winAnimation
+          animation-name: selectingAnimation1
+          animation-duration: 2s
+          animation-fill-mode: inherit
+
+        .game-box.loose
+          @include looseAnimation
+          animation-name: selectingAnimation2
+          animation-duration: 2s
+          animation-fill-mode: inherit
+
+
 
 
 

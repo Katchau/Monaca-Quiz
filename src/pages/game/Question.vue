@@ -47,7 +47,7 @@
             <f7-card-content>
                 <ul class="answers">
                     <li class="answer" v-for="(answer, i) in answers" :key="'answer' + i">
-                        <button class="game-box" @click="checkAnswer(answer)">
+                        <button :id="`button${i}`" class="game-box" @click="checkingAnimation(answer, $event)">
                             {{answer.text}}
                         </button>
                     </li>
@@ -107,6 +107,14 @@
                 this.questionState.state.push(state);
 
                 this.$f7router.back()
+            },
+            checkingAnimation(answer, btn){
+                let self = this;
+                btn.srcElement.className += answer.correct ? ' win' : ' loose' ;
+
+                let timeOutMethod = () => {self.checkAnswer(answer)};
+
+                setTimeout(timeOutMethod, 3000)
             }
         }
     }
