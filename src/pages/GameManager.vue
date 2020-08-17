@@ -8,11 +8,11 @@
                     name="genre"
                     placeholder=""
                     type="select"
-                    default-value="any"
+                    default-value="0"
                 >
-                    <option value="any">Any Kind</option>
-                    <option v-for="(category, i) in categories" :key="i" :value="category.val">
-                        {{category.text}}
+                    <option value="0">Any Kind</option>
+                    <option v-for="(category, i) in categories" :key="i" :value="category.id">
+                        {{category.name}}
                     </option>
                 </f7-list-input>
 
@@ -24,7 +24,7 @@
                         default-value="easy"
                 >
                     <option value="easy">Easy</option>
-                    <option value="normal">Normal</option>
+                    <option value="medium">Normal</option>
                     <option value="hard">Hard</option>
                 </f7-list-input>
 
@@ -54,13 +54,9 @@
 
         data() {
             return {
-                difficulty: 0, //0 - easy, 1 - normal, 2 - hard
-                categories: [
-                    {
-                        val: 'music',
-                        text: 'Music'
-                    }
-                ],
+                difficulty: 'easy', //0 - easy, 1 - normal, 2 - hard
+                categorySelected: 0,
+                categories: quizApi.categoriesJSON,
                 gameState: 'create', //create check play loose win next stop
                 questionState: {
                     helpUsed: [],
@@ -83,7 +79,6 @@
         methods: {
             //TODO unfinished. Here is where you request
             getQuestion() {
-                let difficulty = this.currentLevelState;
                 let self = this;
 
                 let successMethod = function (data) {
@@ -110,11 +105,12 @@
                     });
                 };
 
-                quizApi.quizQuestionRequest(successMethod, 12, 'hard');
+                quizApi.quizQuestionRequest(successMethod, this.categorySelected, this.difficulty);
             },
 
             startGame(){
-                // TODO check difficulty and that stuff
+                this.categorySelected = this.$$('#game-create [name="genre"]').val();
+                this.difficulty = this.$$('#game-create [name="difficulty"]').val();
                 this.transitionState()
             },
 
@@ -141,6 +137,10 @@
                 } else if (this.gameState === 'play') {
                     this.gameState = 'check';
                     this.currentLevelState++;
+
+                    if (this.currentLevelState === 6 || this.currentLevelState === 11)
+                        this.difficulty = this.difficulty === 'easy' ? 'medium' : 'hard';
+
                     if (this.currentLevelState > 15) {
                         this.gameState = 'win';
                         this.transitionState();
