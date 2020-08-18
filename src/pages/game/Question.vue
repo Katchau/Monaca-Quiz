@@ -1,6 +1,6 @@
 <template>
     <f7-page id="question-page">
-
+        <!--TODO this section would be better to be in a Help.vue component and the current Help.vue would be HelpModule or smthing-->
         <f7-popover id="help-page" ref="helpPopUp">
             <div v-if="!hasVerified">
                 <h3>
@@ -14,9 +14,13 @@
                 </f7-button>
             </div>
             <div v-else id="help-card">
-                Player has chosen to use the {{helpType}} help !
+                <h3> Player has chosen to use the {{helpType}} help ! </h3>
                 <Help id="help-view" :answers="answers" :help-type="helpType" help-page />
             </div>
+        </f7-popover>
+
+        <f7-popover id="error-pop" ref="unavailablePopUp">
+            <h3>Help option not available now!</h3>
         </f7-popover>
 
         <f7-navbar>
@@ -37,6 +41,7 @@
                 </f7-button>
             </f7-nav-right>
         </f7-navbar>
+        <!--  TODO same thing as the other todo, just add the component here if changes are made to this      -->
 
         <f7-card id="question-body">
             <f7-card-header>
@@ -83,12 +88,16 @@
                 this.$f7router.back()
             },
             openPopUp(help) {
-                if(this.questionState.helpUsed.includes(help))
+                if(this.questionState.helpUsed.includes(help)) {
+                    this.$refs.unavailablePopUp.open();
                     return false;
+                }
 
                 if(this.hasVerified) {
-                    if(this.helpType !== help)
+                    if(this.helpType !== help) {
+                        this.$refs.unavailablePopUp.open();
                         return false
+                    }
                 }
 
                 this.helpType = help;

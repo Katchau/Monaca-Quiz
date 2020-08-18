@@ -63,16 +63,7 @@
                     state: []
                 },
                 currentLevelState: 1,
-                //this is just an example, the goal is to push as you go along
-                questions: [{
-                    question: 'Template question?',
-                    answers: [
-                        {
-                            text: 'Bananas',
-                            correct: true
-                        }
-                    ]
-                }]
+                questions: []
             }
         },
 
@@ -161,9 +152,15 @@
                         }
                     });
                     this.gameState = 'end';
+                    this.transitionState()
                 } else if(this.gameState === 'end') {
                     //TODO something like save the record?
-                    this.$f7router.back();
+                    let self = this;
+                    let timeoutMethod = () => {
+                        self.$f7router.back(self.$f7.views.current.history[0], {force: true});
+                    };
+
+                    setTimeout(timeoutMethod, 3000)
                 } else {
                     //TODO por enquanto esta so o next
                     this.gameState = 'check';

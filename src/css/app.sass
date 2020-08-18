@@ -110,10 +110,14 @@ $my-green: lightseagreen
 .hidden
   display: none
 
-#help-page
+#help-page, #error-pop
   @include center-area-vh
   min-width: 80%
   text-align: center
+  background-color: $my-yellow
+  color: $my-pseudoblue
+  border-color: $my-salmon
+  border-style: double
 
   #help-card
     padding: 5px
@@ -159,7 +163,7 @@ $my-green: lightseagreen
 
       &.question-box
         font-size: 1.4em
-        padding: 10% 0
+        padding: 10% 1%
         height: auto
         max-height: 25vh
         font-weight: bold
