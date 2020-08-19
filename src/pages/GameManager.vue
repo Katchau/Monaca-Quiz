@@ -30,6 +30,7 @@
 
                 <f7-list-button @click="startGame()" title="Start Game" />
             </f7-list>
+            <h4 @click="retBack()">Back to main menu</h4>
         </div>
         <div v-else id="game" style="text-align: center">
             <img src="/src/assets/coin1.gif" alt="loading pic"/>
@@ -68,6 +69,10 @@
         },
 
         methods: {
+
+            retBack() {
+                this.$f7router.back()
+            },
 
             getQuestion() {
                 let self = this;
