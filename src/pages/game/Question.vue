@@ -124,9 +124,16 @@
                 let self = this;
                 btn.srcElement.className += answer.correct ? ' win' : ' loose' ;
 
-                let timeOutMethod = () => {self.checkAnswer(answer)};
+                let timeOutMethod1 = () => {
+                    self.answers.forEach((ans, i) => {
+                        if (ans.correct)
+                            self.$$(`#button${i}`).addClass('correct');
+                    })
+                };
+                let timeOutMethod2 = () => {self.checkAnswer(answer)};
 
-                setTimeout(timeOutMethod, 3000)
+                if (!answer.correct) setTimeout(timeOutMethod1, 1600);
+                setTimeout(timeOutMethod2, 3000)
             }
         }
     }

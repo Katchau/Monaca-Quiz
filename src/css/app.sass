@@ -173,6 +173,9 @@ $my-green: lightseagreen
     color: $my-yellow
     text-align: center
 
+    &:hover
+      cursor: pointer
+
 .hidden
   display: none
 
@@ -257,6 +260,9 @@ $my-green: lightseagreen
           animation-name: selectingAnimation1
           animation-duration: 2s
           animation-fill-mode: inherit
+
+        .game-box.correct
+          background-color: $my-green
 
         .game-box.loose
           @include looseAnimation
