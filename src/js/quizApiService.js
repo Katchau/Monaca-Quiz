@@ -103,7 +103,7 @@ let categoriesJSON = [
 
 
 let quizQuestionRequest = function (successMethod, category, difficulty) {
-    let amount = 1; //number of questions
+    let amount = 5; //number of questions
     let type = 'multiple';
     let encode = 'url3986';
 

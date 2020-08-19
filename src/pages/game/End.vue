@@ -1,20 +1,16 @@
 <template>
     <f7-page id="end-page">
         <div v-if="state === 'loose'" style="text-align: center">
+            <img class="esbetaculo-logo" alt="loose-img" src="src/assets/loose.png"/>
             <h1>
                 Shame, you Lost ...
             </h1>
-            <p>
-                Ter uma imagem aqui?
-            </p>
         </div>
         <div v-else-if="state === 'win'" style="text-align: center">
+            <img class="esbetaculo-logo" alt="win-img" src="src/assets/win.png"/>
             <h1>
                 Congratulations, you won the grand prize of 1 Million Dollars!
             </h1>
-            <p>
-                Image and animation missing
-            </p>
         </div>
         <div v-else style="text-align: center">
             <h1>

@@ -68,13 +68,12 @@
         },
 
         methods: {
-            //TODO unfinished. Here is where you request
+
             getQuestion() {
                 let self = this;
 
-                let successMethod = function (data) {
-                    console.log('success!');
-                    let result = data.results[0];
+                let questionPrep = function () {
+                    let result = self.questions.pop();
                     let answers = [];
                     result.incorrect_answers.forEach(x => {
                         answers.push({
@@ -96,7 +95,15 @@
                     });
                 };
 
-                quizApi.quizQuestionRequest(successMethod, this.categorySelected, this.difficulty);
+                let successMethod = function (data) {
+                    self.questions = data.results;
+                    questionPrep()
+                };
+
+
+                if (this.questions.length === 0) {
+                    quizApi.quizQuestionRequest(successMethod, this.categorySelected, this.difficulty);
+                } else questionPrep()
             },
 
             startGame(){
