@@ -8,6 +8,7 @@
                 <f7-button class="weird-btn" outline color="red" round raised login-screen-open="#register-screen">Register Screen</f7-button>
                 <f7-button class="weird-btn" outline color="red" round raised login-screen-open="#login-screen">Login Screen</f7-button>
                 <f7-button class="weird-btn" outline color="red" round raised href="/game/">Start Game</f7-button>
+                <f7-button class="weird-btn" outline color="red" round raised href="/profile/">Profile Page</f7-button>
                 <button id="secret" style="display: none" @click="playIntro()" />
             </f7-list>
         </f7-block>

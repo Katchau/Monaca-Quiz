@@ -7,6 +7,7 @@ import Question from "@/pages/game/Question";
 import Help from "@/pages/game/Help";
 import GameManager from "@/pages/GameManager";
 import End from "@/pages/game/End";
+import Profile from "@/pages/user/Profile";
 
 export default [
   {
@@ -20,6 +21,10 @@ export default [
   {
     path: '/register/',
     component: Register
+  },
+  {
+    path: '/profile',
+    component: Profile
   },
   {
     path: '/game',

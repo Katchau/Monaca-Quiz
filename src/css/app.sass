@@ -109,6 +109,56 @@ $my-green: lightseagreen
 .add-button
   width: 200px
 
+#profile-page
+  overflow: hidden
+
+  h3
+    text-align: center
+
+  .page-content
+    overflow-y: hidden
+    background-color: $my-yellow
+    color: $my-pseudoblue
+    border-color: $my-salmon
+    border-style: double
+
+  ul
+    background-color: $my-yellow
+
+  ul, .item-inner
+    &:before, &:after
+      background-color: $my-salmon
+
+  .item-inner
+
+    &:before
+      content: ''
+      position: absolute
+      display: block
+      z-index: 15
+      top: 0
+      right: auto
+      bottom: auto
+      left: 0
+      height: 1px
+      width: 100%
+      transform-origin: 50% 0%
+      transform: scaleY(calc(1 / var(--f7-device-pixel-ratio)))
+
+  li
+    margin-bottom: 10px
+
+    .item-content
+      background-color: white
+      padding: 0
+
+  #score-list
+    max-height: 300px
+    overflow-y: auto
+
+  h4
+    color: $my-pseudoblue
+    text-align: center
 
 #game-create
   ul
@@ -120,7 +170,7 @@ $my-green: lightseagreen
     color: $my-salmon
 
   h4
-    color: lightyellow
+    color: $my-yellow
     text-align: center
 
 .hidden
